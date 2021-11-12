@@ -1,4 +1,4 @@
-import React ,{ useState}  from 'react';
+import React ,{ useState, useEffect }  from 'react';
 import { PostContext }  from './PostContext';
 import { fetchPosts, createPost, updatePost, deletePost, likePost} from '../api';
 
@@ -12,7 +12,11 @@ export const PostState = ({children}) => {
         await fetchPosts()
         .then(res => setPosts(res.data))
         .catch(err => console.log(err))
-        }
+        };
+
+        useEffect(() => {
+            getPosts();
+        },[])
 
     const PostApi = async(postData) => {
         await createPost(postData)

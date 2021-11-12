@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Grid , CircularProgress } from '@material-ui/core';
 import { PostContext } from '../../Contexts/PostContext';
 
@@ -8,11 +8,7 @@ import useStyles from './styles';
 const Posts = () => {
     const classes = useStyles();
     
-    const { posts , getPosts } = useContext(PostContext);
-
-    useEffect(() => {
-        getPosts();
-    },[])
+    const { posts } = useContext(PostContext);
 
     return (
        !posts.length ? <CircularProgress /> : (
